@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<h3>Comments</h3>
+<%= render partial: 'projects/comment', collection: @project.comments %>
+
+<%= link_to 'Edit', edit_project_path(@project) %> 

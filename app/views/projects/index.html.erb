@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Projects</h1>
+
+Projects <%= @projects.count %>
+
+<div id="search">
+<%= form_tag projects_path, method: :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+</div>
+
+
+<div id="project">
+<table>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <h2><%= link_to project.title, project %></h2>
+        <p> <%= project.comments.count %> answers
+        <%= project.watch_count %> watches 
+        <%= distance_of_time_in_words(project.created_at, Time.now) %> ago
+        <% if project.price %>
+          <p><%= project.price %> rubles
+        <% else %>
+         <p> Contract price
+        <% end %>
+    <% project.tags do |tag| %>
+      <tr>
+        <td><%= link_to tag.name, tag_path(tag) %></td>
+      </tr>
+    <% end %>
+
+      </tr>
+      <hr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+  <div class="digg_pagination">
+    <%= will_paginate @projects, :container => false, previous_label: "<", next_label: ">" %>
+  </div>
+<br>
+
+<%= link_to "new project", new_project_path %>

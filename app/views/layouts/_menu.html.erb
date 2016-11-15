@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>Categories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Tag.all.each do |tag| %>
+      <tr>
+        <td><%= link_to tag.name, tag_path(tag) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

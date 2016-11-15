@@ -1,0 +1,11 @@
+<div class=header>
+
+    <% if user_signed_in? %>
+
+      <li id="white_link"><%= link_to 'Account', edit_user_registration_path %></li>
+      <li id="white_link"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li id="white_link"><%= link_to "Login", new_user_session_path, class: "active" %></li>
+    <% end %>
+
+</div>

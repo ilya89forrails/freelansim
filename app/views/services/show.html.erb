@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @service.name %>
+</p>
+<p>
+  Tags:
+  <% @service.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %>
+  <% end %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @service.description %>
+</p>
+
+<%= link_to 'Edit', edit_service_path(@service) %> 

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Freelancers</h1>
+
+<%= form_tag users_path, method: :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+
+<table>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <h2><%= user.email %></h2>
+        <%= link_to 'Show', user %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <div class="digg_pagination">
+    <%= will_paginate @users, :container => false, previous_label: "<", next_label: ">" %>
+  </div>
+<br>
+
+<%= link_to "new user", new_user_path %>
+

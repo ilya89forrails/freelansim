@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Services</h1>
+
+<%= form_tag services_path, method: :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+
+<table>
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <h2><%= service.title %></h2>
+        <%= link_to 'Show', service %>
+      </tr>
+      <% @service.tags.each do |tag| %>
+      <%= link_to tag.name, tag_path(tag) %>
+      <% end %>
+      </p>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class="digg_pagination">
+    <%= will_paginate @services, :container => false, previous_label: "<", next_label: ">" %>
+  </div>
+<br>
+
+<%= link_to "new service", new_service_path %>

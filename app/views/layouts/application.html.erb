@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Freelansim</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <div class=container-fluid id="first-row">
+    <div class=row>
+       <div class=container>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "TM Feed", "http://tmfeed.ru" %></li>
+            <li><%= link_to "Habrahabr", "https://habrahabr.ru" %></li>
+            <li><%= link_to "Geektimes", "https://geektimes.ru" %></li>
+            <li><%= link_to "Toster", "https://toster.ru" %></li>
+            <li><%= link_to "Moy krug", "https://moikrug.ru" %></li>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class=container-fluid id="second-row">
+    <div class=row>
+      <div class="navbar navbar-default">
+      <div class=container>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li id="logo"><%= link_to "Freelansim", root_path %></li>
+            <li><%= link_to "Projects", projects_path %></li>
+            <li><%= link_to "Services", services_path %></li>
+            <li><%= link_to "Freelancers", users_path %></li>
+            <li><%= render 'layouts/header' %></li>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="main">
+    <div class="row">
+      <div class="col-lg-8" id="main-zone"><%= yield %></div>
+      <div class="col-lg-4" id="right-menu"><%= render 'layouts/menu' %></div>
+    </div>
+  </div>
+   
+    <%= render 'layouts/footer' %>
+  </body>
+</html>
