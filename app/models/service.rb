@@ -1,8 +1,6 @@
 class Service < ApplicationRecord
 	belongs_to :user
-	
-	has_many :tag_service_connections
-	has_many :tags, through: :tag_service_connections
+	has_many :taggings, as: :taggable
 
 	def self.search(search)
   	  if search

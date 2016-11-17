@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115092808) do
+ActiveRecord::Schema.define(version: 20161112145139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20161115092808) do
     t.float    "price"
     t.integer  "watch_count", default: 0
     t.text     "description"
+    t.string   "category"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -36,36 +37,20 @@ ActiveRecord::Schema.define(version: 20161115092808) do
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.string   "category"
     t.float    "price"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "tag_service_connections", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "service_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_tag_service_connections_on_service_id", using: :btree
-    t.index ["tag_id"], name: "index_tag_service_connections_on_tag_id", using: :btree
-  end
-
-  create_table "tag_user_connections", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_tag_user_connections_on_tag_id", using: :btree
-    t.index ["user_id"], name: "index_tag_user_connections_on_user_id", using: :btree
-  end
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_taggings_on_project_id", using: :btree
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -93,14 +78,10 @@ ActiveRecord::Schema.define(version: 20161115092808) do
     t.string   "country"
     t.datetime "birthday"
     t.integer  "completed_projects"
+    t.string   "category"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "tag_service_connections", "services"
-  add_foreign_key "tag_service_connections", "tags"
-  add_foreign_key "tag_user_connections", "tags"
-  add_foreign_key "tag_user_connections", "users"
-  add_foreign_key "taggings", "projects"
   add_foreign_key "taggings", "tags"
 end

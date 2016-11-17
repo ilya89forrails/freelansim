@@ -14,8 +14,11 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <h2><%= user.email %></h2>
-        <%= link_to 'Show', user %>
+        <h2><%= link_to user.email, user %></h2>
+          <% user.tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag) %>
+          <% end %>
+        <hr>
       </tr>
     <% end %>
   </tbody>
