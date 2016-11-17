@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
 	has_many :comments
-	has_many :taggings
-	has_many :tags, through: :taggings
+	has_many :taggings, as: :taggable
+	has_many :tags, through: :taggings 
 
 	#include Elasticsearch::Model
 	#include Elasticsearch::Model::Callbacks
@@ -22,13 +22,8 @@ class Project < ApplicationRecord
       end
 	end
 
-
-
-
 	def tag_list
-	  self.tags.collect do |tag|
-	    tag.name
-	  end.join(", ")
+	  self.tags.pluck(:name).join(", ")
 	end
 
 	def tag_list=(tags_string)

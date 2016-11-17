@@ -8,11 +8,10 @@ class User < ApplicationRecord
   has_many :comments
   has_many :services
 
-  has_many :tag_user_connections
-  has_many :tags, through: :tag_user_connections
+  has_many :taggings, as: :taggable
 
-  mount_uploader :photo, PhotoUploader
 
+  
   def self.search(search)
   	  if search
         where("title like :q or description like :q", q: "%#{search}%")

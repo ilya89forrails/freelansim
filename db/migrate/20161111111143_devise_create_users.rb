@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :country
       t.datetime :birthday
       t.integer :completed_projects
+      t.string :category
     end
 
     add_index :users, :email,                unique: true

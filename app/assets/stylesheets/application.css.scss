@@ -25,23 +25,29 @@ body {
 #main{
 	margin-left: 10%;
 	margin-right: 10%;
-  text-align: center;
+  
 	
 }
 
 
 #main-zone {
   background-color: #efefef;
+  float: left;
+  width: 880px;
+  margin-right: 20px;
+  min-height: 600px;
 }
 
 
-#footer {
-  margin-left: 10%;
-  margin-right: 10%;
+footer {
+  display: block;
+  width: 80%;
+  background-color: #efefef;
   position: absolute;
   bottom: 0;
-  padding: 1rem;
-  text-align: center;
+  margin-left: 10%;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .header{
@@ -62,7 +68,8 @@ body {
 }
 
 #right-menu{
-	text-align: center;
+  float: right;
+	width: 300px;
 	background-color: #efefef;
 }
 

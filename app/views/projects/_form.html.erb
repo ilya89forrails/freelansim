@@ -1,21 +1,24 @@
-<%= form_for(@project) do |f| %>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-    <p>
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :tag_list %><br />
-    <%= f.text_field :tag_list %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+
+<table>
+  <%= simple_form_for @project do |f| %>
+    <tr>
+      <%= f.input :title %> <br />
+    </tr>
+    <tr>
+      <%= f.input :price %><br />
+      <%= f.input :cashless %>
+    </tr>
+    <tr>
+      <%= f.input :description %><br />
+    </tr>
+    <tr>
+      <%= f.input :tag_list %><br />
+    </tr>
+    <tr>
+      <%= f.button :submit %>
+    </tr>
+  <% end %>
+</table>
+
+
+
